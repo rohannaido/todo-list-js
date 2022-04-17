@@ -1,0 +1,75 @@
+@import url('https://fonts.googleapis.com/css2?family=Fredoka:wght@300&family=League+Spartan:wght@200;500&family=Montserrat&family=Open+Sans:wght@300;400&family=Roboto+Slab:wght@400;800&family=Source+Sans+Pro&display=swap');
+
+*{
+    box-sizing: border-box;
+    font-family: 'Montserrat', sans-serif;
+}
+
+body{
+    margin: 0;
+}
+
+.heading {
+    text-align: center;
+    margin: 2rem 0;
+}
+
+.main{
+    /* height: 100px; */
+    width: 50%;
+    margin: auto;
+    background-color: #34d399;
+    border-radius: 1rem;
+}
+
+.new-task-div {
+    text-align: center;
+    padding: 1rem;
+}
+
+.new-task-input {
+    border-radius: 1rem;
+    padding: 0.8rem;
+    border: 1px black solid;
+    background-color: #a7f3d0;
+}
+
+.task-output-div {
+    text-align: center;
+}
+
+.task-list {
+    list-style: none;
+    /* margin: 0; */
+    margin-block-start: 0;
+    padding-inline-start: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.task-list li {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    width: 10rem;
+    margin: 0.5rem;
+    padding: 1rem;
+    border: 1px black solid;
+    border-radius: 1rem;
+}
+
+.delete-task {
+    background-color: transparent;
+    border: 1px transparent solid;
+    cursor: pointer;
+    font-size: 1rem;
+    border-radius: 0.5rem;
+    cursor: pointer;
+}
+
+@media screen and (max-width: 768px){
+    .main{
+        width: 80%;
+    }
+}
