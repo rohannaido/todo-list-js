@@ -15,11 +15,12 @@ body{
 }
 
 .main{
-    /* height: 100px; */
     width: 50%;
     margin: auto;
-    background-color: #34d399;
+    margin-bottom: 1rem;
+    background-color: #bbf7d0;
     border-radius: 1rem;
+    padding: 1rem 1rem;
 }
 
 .new-task-div {
@@ -30,8 +31,18 @@ body{
 .new-task-input {
     border-radius: 1rem;
     padding: 0.8rem;
-    border: 1px black solid;
-    background-color: #a7f3d0;
+    border: 1px transparent solid;
+    background-color: #22c55e;
+    color: white;
+    width: 70%;
+    text-align: center;
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+}
+
+.new-task-input:focus {
+    outline: none;
+    background-color: #15803d;
 }
 
 .task-output-div {
@@ -44,7 +55,7 @@ body{
     margin-block-start: 0;
     padding-inline-start: 0;
     display: flex;
-    flex-direction: column;
+    flex-direction: column-reverse;
     align-items: center;
 }
 
@@ -52,21 +63,29 @@ body{
     display: flex;
     flex-direction: row;
     justify-content: space-between;
-    width: 15rem;
+    align-items: center;
+    min-width: 15rem;
     margin: 0.5rem;
     padding: 1rem;
     border: 1px black solid;
     border-radius: 1rem;
 }
 
-.delete-task {
+.task-buttons {
+    display: flex;
+    flex-direction: row;
+}
+
+.task-buttons i {
     background-color: transparent;
     border: 1px transparent solid;
     cursor: pointer;
     font-size: 1rem;
     border-radius: 0.5rem;
     cursor: pointer;
+    margin: 0.15rem;
 }
+
 
 @media screen and (max-width: 768px){
     .main{

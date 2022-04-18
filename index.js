@@ -23,7 +23,7 @@ const displayTasks = () => {
             newLi.setAttribute('key',task.id);
             newLi.innerHTML = `
             ${task.item}
-            <div>
+            <div class="task-buttons">
                 <i key="${task.id}" class="bi bi-pencil-fill delete-task" onclick=editTask()></i>
                 <i key="${task.id}" class="bi bi-trash-fill delete-task" onclick=deleteTask()></i>
             </div>`;
