@@ -12,18 +12,31 @@
 
 body{
     margin: 0;
+    background-image: url("./images/background.jpg");
+    background-attachment: fixed;
+    background-position: center;
+    background-repeat: no-repeat;
+    /* background-size: cover; */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 
 .heading {
+    margin: auto;
+    padding: 0.5rem 1rem;
     text-align: center;
     margin: 2rem 0;
+    font-size: 2.5rem;
+    background-color: #1e293b;
+    color: white;
 }
 
 .main{
     width: 50%;
     margin: auto;
     margin-bottom: 1rem;
-    background-color: #bbf7d0;
+    background-color: #dcfce7;
     border-radius: 1rem;
     padding: 1rem 1rem;
     color: var(--black-text);
@@ -38,12 +51,13 @@ body{
 }
 
 .add-task-button {
-    background-color: #22c55e;
+    background-color: #bbf7d0;
     border: none;
     padding: 1rem 1.5rem;
     font-size: var(--task-font-size);
-    color: white;
+    color: var(--black-text);
     border-radius: 1rem;
+    margin-bottom: 1rem;
 }
 
 .add-task-button:hover {
@@ -53,25 +67,40 @@ body{
     color: white;
 }
 
+.new-task-input-div {
+    height: 0rem;
+    visibility: hidden;
+    opacity: 1;
+    transition: height 0.2s, opacity 0.3s linear;
+    
+}
+
 .new-task-input {
-    border-radius: 1rem;
-    padding: 0px;
+    padding: 0.5rem;
     border: 1px transparent solid;
     background-color: #22c55e;
     color: white;
     min-width: 100%;
-    text-align: center;
-    margin-top: 1rem;
     font-size: var(--task-font-size);
-    visibility: hidden;
-    height: 0px;
-    transition: 0.2s;
+}
+
+.new-task-input::placeholder {
+    color: #e2e8f0;
 }
 
 .new-task-input:focus {
     outline: none;
     background-color: #15803d;
     transition: 0.2s;
+}
+
+.title-input {
+    font-weight: bolder;
+    border-bottom: 1px #4ade80 solid;
+}
+
+.detail-input {
+    font-size: 0.8rem;
 }
 
 .task-output-div {
@@ -101,7 +130,18 @@ body{
     color: var(--black-text);
     font-size: var(--task-font-size);
     background-color: #dcfce7;
-    font-weight: bolder;
+    /* font-weight: bolder; */
+}
+
+.task-list li h4 {
+    margin: 0;
+    text-align: left;
+}
+
+.task-list li p {
+    margin: 0;
+    font-size: 0.8rem;
+    text-align: left;
 }
 
 .task-buttons {
@@ -120,6 +160,9 @@ body{
     color: var(--black-text);
 }
 
+.task-buttons i:hover {
+    /* color: white; */
+}
 
 @media screen and (max-width: 768px){
     .main{
