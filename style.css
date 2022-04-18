@@ -1,5 +1,10 @@
 @import url('https://fonts.googleapis.com/css2?family=Fredoka:wght@300&family=League+Spartan:wght@200;500&family=Montserrat&family=Open+Sans:wght@300;400&family=Roboto+Slab:wght@400;800&family=Source+Sans+Pro&display=swap');
 
+:root {
+    --black-text: #1e293b;
+    --task-font-size: 1rem;
+}
+
 *{
     box-sizing: border-box;
     font-family: 'Montserrat', sans-serif;
@@ -21,28 +26,52 @@ body{
     background-color: #bbf7d0;
     border-radius: 1rem;
     padding: 1rem 1rem;
+    color: var(--black-text);
 }
 
 .new-task-div {
     text-align: center;
     padding: 1rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.add-task-button {
+    background-color: #22c55e;
+    border: none;
+    padding: 1rem 1.5rem;
+    font-size: var(--task-font-size);
+    color: white;
+    border-radius: 1rem;
+}
+
+.add-task-button:hover {
+    cursor: pointer;
+    background-color: #15803d;
+    transition: 0.2s;
+    color: white;
 }
 
 .new-task-input {
     border-radius: 1rem;
-    padding: 0.8rem;
+    padding: 0px;
     border: 1px transparent solid;
     background-color: #22c55e;
     color: white;
-    width: 70%;
+    min-width: 100%;
     text-align: center;
     margin-top: 1rem;
-    margin-bottom: 1rem;
+    font-size: var(--task-font-size);
+    height: 0px;
+    visibility: hidden;
+    transition: 0.2s;
 }
 
 .new-task-input:focus {
     outline: none;
     background-color: #15803d;
+    transition: 0.2s;
 }
 
 .task-output-div {
@@ -67,8 +96,10 @@ body{
     min-width: 15rem;
     margin: 0.5rem;
     padding: 1rem;
-    border: 1px black solid;
+    border: 1px var(--black-text) solid;
     border-radius: 1rem;
+    color: var(--black-text);
+    font-size: var(--task-font-size);
 }
 
 .task-buttons {
@@ -83,7 +114,8 @@ body{
     font-size: 1rem;
     border-radius: 0.5rem;
     cursor: pointer;
-    margin: 0.15rem;
+    margin: 0.3rem;
+    color: var(--black-text);
 }
 
 

@@ -3,7 +3,23 @@ let taskKey = -1;
 let editFlag = false;
 const newTaskInput = document.querySelector(".new-task-input");
 const taskList = document.querySelector(".task-list");
+const addNewTaskButton = document.querySelector(".add-task-button");
 
+addNewTaskButton.addEventListener('click', () => toggleInput());
+
+const toggleInput = () => {
+    // newTaskInput.style.display === 'inline' ? newTaskInput.style.display = 'none': newTaskInput.style.display = 'inline';
+    if(newTaskInput.style.height === '0px') {
+        newTaskInput.style.height = '1rem';
+        newTaskInput.style.visibility = 'visible';
+        newTaskInput.style.padding = '1rem';
+    }
+        else { 
+            newTaskInput.style.height = '0px';
+            newTaskInput.style.visibility = 'hidden';
+            newTaskInput.style.padding = '0px';
+        }
+}
 newTaskInput.addEventListener('keydown', () => {inputKeyHandler()});
 
 const displayTasks = () => {
@@ -44,6 +60,7 @@ const inputKeyHandler = () => {
             editTaskHandler(newTaskInput.value);
             newTaskInput.value = "";
         }
+        toggleInput();
     }
 }
 
