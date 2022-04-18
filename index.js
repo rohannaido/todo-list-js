@@ -2,6 +2,7 @@ let allTasks = [];
 let taskKey = -1;
 let editFlag = false;
 let inputToggleFlag = false;
+const newTaskInputDiv = document.querySelector(".new-task-input-div");
 const newTaskInput = document.querySelector(".new-task-input");
 const taskList = document.querySelector(".task-list");
 const addNewTaskButton = document.querySelector(".add-task-button");
@@ -12,14 +13,24 @@ addNewTaskButton.addEventListener('click', () => {
 
 const toggleInput = () => {
     if(!inputToggleFlag) {
-        newTaskInput.style.height = '1rem';
-        newTaskInput.style.visibility = 'visible';
-        newTaskInput.style.padding = '1rem';
+        // newTaskInputDiv.style.visibility = 'visible';
+        // newTaskInputDiv.style.height = 'auto';
+        // newTaskInput.style.padding = '1rem';
+        newTaskInputDiv.style.cssText = `
+            visibility: visible;
+            height: 5.2rem;
+            opacity: 1;
+            `;
     }
     else { 
-        newTaskInput.style.height = '0px';
-        newTaskInput.style.visibility = 'hidden';
-        newTaskInput.style.padding = '0px';
+        // newTaskInputDiv.style.visibility = 'hidden';
+        // newTaskInputDiv.style.height = '0px';
+        newTaskInputDiv.style.cssText = `
+            visibility: hidden;
+            height: 0px;
+            opacity: 0;
+            `;
+        // newTaskInput.style.padding = '0rem';
     }
     inputToggleFlag = !inputToggleFlag;
 }
@@ -41,7 +52,10 @@ const displayTasks = () => {
             newLi.appendChild(document.createTextNode(task.item));
             newLi.setAttribute('key',task.id);
             newLi.innerHTML = `
-            ${task.item}
+            <div>
+                <h4>${task.item}</h4>
+                <p>${task.detail}</p>
+            </div>
             <div class="task-buttons">
                 <i key="${task.id}" class="bi bi-pencil-fill delete-task" onclick=editTask()></i>
                 <i key="${task.id}" class="bi bi-trash-fill delete-task" onclick=deleteTask()></i>
