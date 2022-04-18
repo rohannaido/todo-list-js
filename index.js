@@ -52,17 +52,19 @@ const displayTasks = () => {
             newLi.setAttribute('key',task.id);
             newLi.setAttribute('onclick', 'editTask()');
             newLi.innerHTML = `
-            <div>
-                <h4>${task.item}</h4>
-                <p>${task.detail}</p>
+            <div class="task-item-div" onclick=editTask()>
+                <input class="task-item-item" value="${task.item}" onkeydown= disabled>
+                <input class="task-detail-item" value="${task.detail}" disabled>
             </div>
             <div>
-
+            
             </div>
             <div class="task-buttons">
                 <i key="${task.id}" class="bi bi-trash-fill delete-task" onclick=deleteTask()></i>
             </div>`;
-            // <i key="${task.id}" class="bi bi-pencil-fill delete-task" onclick=editTask()></i>
+                // <h4>${task.item}</h4>
+                // <p>${task.detail}</p>
+                // <i key="${task.id}" class="bi bi-pencil-fill delete-task" onclick=editTask()></i>
             taskList.appendChild(newLi);
         })
     });
@@ -111,13 +113,22 @@ const deleteTask = () =>{
 }
 
 const editTask = () => {
-    newTaskInput.value = event.path[0].querySelector("h4").innerText;
-    newTaskInputDetail.value = event.path[0].querySelector("p").innerText;
-    taskKey = event.path[0].getAttribute('key');
-    if (!inputToggleFlag){
-        toggleInput();
+    // () => {
+    
+    if (event.target.disabled === true) {
+        event.target.disabled = false;
+        event.target.focus();
     }
-    editFlag = true;
+    // console.log("teatsda: ", event.target);
+
+    // newTaskInput.value = event.path[0].querySelector("h4").innerText;
+    // newTaskInputDetail.value = event.path[0].querySelector("p").innerText;
+    // taskKey = event.path[0].getAttribute('key');
+    // if (!inputToggleFlag){
+    //     toggleInput();
+    // }
+    // editFlag = true;
+    // }
 }
 
 const editTaskHandler = (newTask, newTaskDetail) => {

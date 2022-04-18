@@ -123,9 +123,10 @@ body{
     justify-content: space-between;
     align-items: center;
     min-width: 15rem;
+    width: 100%;
     /* max-width: 25rem; */
     /* margin: 0.5rem; */
-    padding: 0.5rem 0.5rem;
+    /* padding: 0.5rem 0.5rem; */
     /* border: 1px var(--black-text) solid; */
     /* border-radius: 1rem; */
     color: var(--black-text);
@@ -136,6 +137,40 @@ body{
 
 .task-list li:hover {
     background-color: #86efac;
+}
+
+.task-item-div {
+    width: 90%;
+}
+
+.task-item-item {
+    background-color: transparent;
+    border: none;
+    font-size: 1.2rem;
+    font-weight: bold;
+    width: 100%;
+    padding: 0.4rem 0.4rem;
+}
+
+.task-detail-item {
+    display: block;
+    background-color: transparent;
+    border: none;
+    font-size: 0.8rem;
+    /* font-weight: bold; */
+    width: 100%;
+    padding: 0.2rem 0.4rem;
+}
+
+.task-item-item:focus, .task-detail-item:focus {
+    outline: none;
+    background-color: #15803d;
+    transition: 0.2s;
+    color: white;
+}
+
+.task-item-item:disabled, .task-detail-item:disabled {
+    color: var(--black-text);
 }
 
 .task-list li h4 {
@@ -152,6 +187,8 @@ body{
 .task-buttons {
     display: flex;
     flex-direction: row;
+    /* width: 10%; */
+    align-items: center;
 }
 
 .task-buttons i {
