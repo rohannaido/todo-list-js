@@ -1,7 +1,8 @@
 let allTasks = [];
 let taskKey = -1;
-let editFlag = false;
 let inputToggleFlag = false;
+let taskItems = "";
+let taskDetails = "";
 const newTaskInputDiv = document.querySelector(".new-task-input-div");
 const newTaskInput = document.querySelector(".title-input");
 const newTaskInputDetail = document.querySelector(".detail-input");
@@ -48,13 +49,12 @@ const displayTasks = () => {
     
         allTasks.map((task) => {
             const newLi = document.createElement('li');
-            // newLi.appendChild(document.createTextNode(task.item));
             newLi.setAttribute('key',task.id);
-            newLi.setAttribute('onclick', 'editTask()');
+
             newLi.innerHTML = `
-            <div class="task-item-div" onclick=editTask()>
-                <input class="task-item-item" value="${task.item}" onkeydown= disabled>
-                <input class="task-detail-item" value="${task.detail}" disabled>
+            <div class="task-item-div">
+                <input class="task-item-item" value="${task.item}">
+                <input class="task-detail-item" value="${task.detail}">
             </div>
             <div>
             
@@ -66,24 +66,31 @@ const displayTasks = () => {
                 // <p>${task.detail}</p>
                 // <i key="${task.id}" class="bi bi-pencil-fill delete-task" onclick=editTask()></i>
             taskList.appendChild(newLi);
+            taskItems = document.querySelectorAll('.task-item-item');
+            taskDetails = document.querySelectorAll('.task-detail-item');
+            for (var i = 0; i < taskItems.length; i++) {
+                taskItems[i].addEventListener('keydown', () => {updateTask()});
+                taskDetails[i].addEventListener('keydown', () => {updateTask()});
+            }
         })
     });
 }
 
 displayTasks();
 
+
+const updateTask = () => {
+    if (event.keyCode === 13){
+        taskKey = event.path[2].getAttribute('key');
+        editTaskHandler(event.path[1].querySelector('.task-item-item').value, event.path[1].querySelector('.task-detail-item').value);
+    }
+}
+
 const inputKeyHandler = () => {
     if (event.keyCode === 13){
-        if (!editFlag) {
-            addNewTask(newTaskInput.value, newTaskInputDetail.value);
-            newTaskInput.value = "";
-            newTaskInputDetail.value = "";
-        }
-        else {
-            editTaskHandler(newTaskInput.value, newTaskInputDetail.value);
-            newTaskInput.value = "";
-            newTaskInputDetail.value = "";
-        }
+        addNewTask(newTaskInput.value, newTaskInputDetail.value);
+        newTaskInput.value = "";
+        newTaskInputDetail.value = "";
         toggleInput();
     }
 }
@@ -112,25 +119,6 @@ const deleteTask = () =>{
     });
 }
 
-const editTask = () => {
-    // () => {
-    
-    if (event.target.disabled === true) {
-        event.target.disabled = false;
-        event.target.focus();
-    }
-    // console.log("teatsda: ", event.target);
-
-    // newTaskInput.value = event.path[0].querySelector("h4").innerText;
-    // newTaskInputDetail.value = event.path[0].querySelector("p").innerText;
-    // taskKey = event.path[0].getAttribute('key');
-    // if (!inputToggleFlag){
-    //     toggleInput();
-    // }
-    // editFlag = true;
-    // }
-}
-
 const editTaskHandler = (newTask, newTaskDetail) => {
 
     fetch(`http://localhost:3000/allTasks/${taskKey}`, {
@@ -139,7 +127,6 @@ const editTaskHandler = (newTask, newTaskDetail) => {
     body: JSON.stringify({ item: newTask, detail: newTaskDetail })
     }).then(res => {
         console.log("Request complete!");
-        editFlag = false;
         displayTasks();
     });
 }
