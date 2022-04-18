@@ -55,7 +55,7 @@ body{
     border: none;
     padding: 1rem 1.5rem;
     font-size: var(--task-font-size);
-    color: var(--black-text);
+    color: #134e4a;
     border-radius: 1rem;
     margin-bottom: 1rem;
     font-weight: bolder;
@@ -65,7 +65,7 @@ body{
     cursor: pointer;
     background-color: #15803d;
     transition: 0.2s;
-    color: white;
+    color: #f0fdf4;
 }
 
 .new-task-input-div {

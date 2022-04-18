@@ -60,7 +60,6 @@ const displayTasks = () => {
 
             </div>
             <div class="task-buttons">
-                
                 <i key="${task.id}" class="bi bi-trash-fill delete-task" onclick=deleteTask()></i>
             </div>`;
             // <i key="${task.id}" class="bi bi-pencil-fill delete-task" onclick=editTask()></i>
@@ -100,6 +99,7 @@ const addNewTask = (newTask, newTaskDetail) => {
 }
 
 const deleteTask = () =>{
+    event.stopPropagation();
     taskKey = event.target.getAttribute("key");
 
     fetch(`http://localhost:3000/allTasks/${taskKey}`, {
