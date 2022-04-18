@@ -1,5 +1,6 @@
 let allTasks = [];
-
+let taskKey = -1;
+let editFlag = false;
 const newTaskInput = document.querySelector(".new-task-input");
 const taskList = document.querySelector(".task-list");
 
@@ -19,24 +20,13 @@ const displayTasks = () => {
         allTasks.map((task) => {
             const newLi = document.createElement('li');
             newLi.appendChild(document.createTextNode(task.item));
-        
-            const newDeleteButton = document.createElement('i');
-            newDeleteButton.setAttribute('key',task.id);
-            newDeleteButton.addEventListener('click', () => deleteTask());
-            newDeleteButton.classList.add('delete-task');
-            newDeleteButton.classList.add('bi');
-            newDeleteButton.classList.add('bi-trash-fill');
-
-            // UPDATE
-
-            // const editButton = document.createElement('i');
-            // editButton.setAttribute('key',task.id);
-            // editButton.addEventListener('click', () => editTask());
-            // editButton.classList.add('delete-task');
-            // editButton.classList.add('bi');
-            // editButton.classList.add('bi-pencil-fill');
-        
-            newLi.appendChild(newDeleteButton);
+            newLi.setAttribute('key',task.id);
+            newLi.innerHTML = `
+            ${task.item}
+            <div>
+                <i key="${task.id}" class="bi bi-pencil-fill delete-task" onclick=editTask()></i>
+                <i key="${task.id}" class="bi bi-trash-fill delete-task" onclick=deleteTask()></i>
+            </div>`;
             taskList.appendChild(newLi);
         })
     });
@@ -46,12 +36,17 @@ displayTasks();
 
 const inputKeyHandler = () => {
     if (event.keyCode === 13){
-        addNewTask(newTaskInput.value);
-        newTaskInput.value = "";
+        if (!editFlag) {
+            addNewTask(newTaskInput.value);
+            newTaskInput.value = "";
+        }
+        else {
+            editTaskHandler(newTaskInput.value);
+            newTaskInput.value = "";
+        }
     }
 }
 
-// Adding new tasks
 const addNewTask = (newTask) => {
     fetch("http://localhost:3000/allTasks", {
     method: "POST",
@@ -64,17 +59,35 @@ const addNewTask = (newTask) => {
 
 }
 
-// Deleting tasks
 const deleteTask = () =>{
-    let taskKey = event.target.getAttribute("key");
+    taskKey = event.target.getAttribute("key");
 
     fetch(`http://localhost:3000/allTasks/${taskKey}`, {
     method: "DELETE"
-    // headers: {'Content-Type': 'application/json'} 
-    // body: JSON.stringify({ item: newTask })
     }).then(res => {
         console.log("Request complete!");
         displayTasks();
     });
+}
 
+const editTask = () => {
+    editFlag = true;
+    newTaskInput.value = event.path[2].innerText;
+    taskKey = event.path[2].getAttribute('key');
+    newTaskInput.focus();
+    // editFlag = false;
+}
+
+const editTaskHandler = (newTask) => {
+
+    fetch(`http://localhost:3000/allTasks/${taskKey}`, {
+    method: "PUT",
+    headers: {'Content-Type': 'application/json'}, 
+    body: JSON.stringify({ item: newTask })
+    }).then(res => {
+        console.log("Request complete!");
+
+        editFlag = false;
+        displayTasks();
+    });
 }
