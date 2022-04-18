@@ -81,11 +81,11 @@ body{
     transition: 0.2s;
 }
 
-.title {
+.title-input {
     font-weight: bolder;
 }
 
-.detail {
+.detail-input {
     font-size: 0.8rem;
 }
 
@@ -127,6 +127,7 @@ body{
 .task-list li p {
     margin: 0;
     font-size: 0.8rem;
+    text-align: left;
 }
 
 .task-buttons {

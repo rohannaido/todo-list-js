@@ -3,7 +3,9 @@ let taskKey = -1;
 let editFlag = false;
 let inputToggleFlag = false;
 const newTaskInputDiv = document.querySelector(".new-task-input-div");
-const newTaskInput = document.querySelector(".new-task-input");
+const newTaskInput = document.querySelector(".title-input");
+const newTaskInputDetail = document.querySelector(".detail-input");
+
 const taskList = document.querySelector(".task-list");
 const addNewTaskButton = document.querySelector(".add-task-button");
 
@@ -11,11 +13,12 @@ addNewTaskButton.addEventListener('click', () => {
     toggleInput();
 });
 
+newTaskInput.addEventListener('keydown', () => {inputKeyHandler()});
+newTaskInputDetail.addEventListener('keydown', () => {inputKeyHandler()});
+
+
 const toggleInput = () => {
     if(!inputToggleFlag) {
-        // newTaskInputDiv.style.visibility = 'visible';
-        // newTaskInputDiv.style.height = 'auto';
-        // newTaskInput.style.padding = '1rem';
         newTaskInputDiv.style.cssText = `
             visibility: visible;
             height: 5.2rem;
@@ -23,18 +26,14 @@ const toggleInput = () => {
             `;
     }
     else { 
-        // newTaskInputDiv.style.visibility = 'hidden';
-        // newTaskInputDiv.style.height = '0px';
         newTaskInputDiv.style.cssText = `
             visibility: hidden;
             height: 0px;
             opacity: 0;
             `;
-        // newTaskInput.style.padding = '0rem';
     }
     inputToggleFlag = !inputToggleFlag;
 }
-newTaskInput.addEventListener('keydown', () => {inputKeyHandler()});
 
 const displayTasks = () => {
     fetch("http://localhost:3000/allTasks")
@@ -70,8 +69,9 @@ displayTasks();
 const inputKeyHandler = () => {
     if (event.keyCode === 13){
         if (!editFlag) {
-            addNewTask(newTaskInput.value);
+            addNewTask(newTaskInput.value, newTaskInputDetail.value);
             newTaskInput.value = "";
+            newTaskInputDetail.value = "";
         }
         else {
             editTaskHandler(newTaskInput.value);
@@ -81,11 +81,11 @@ const inputKeyHandler = () => {
     }
 }
 
-const addNewTask = (newTask) => {
+const addNewTask = (newTask, newTaskDetail) => {
     fetch("http://localhost:3000/allTasks", {
     method: "POST",
     headers: {'Content-Type': 'application/json'}, 
-    body: JSON.stringify({ item: newTask })
+    body: JSON.stringify({ item: newTask, detail: newTaskDetail})
     }).then(res => {
         console.log("Request complete!");
         displayTasks();
