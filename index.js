@@ -1,24 +1,27 @@
 let allTasks = [];
 let taskKey = -1;
 let editFlag = false;
+let inputToggleFlag = false;
 const newTaskInput = document.querySelector(".new-task-input");
 const taskList = document.querySelector(".task-list");
 const addNewTaskButton = document.querySelector(".add-task-button");
 
-addNewTaskButton.addEventListener('click', () => toggleInput());
+addNewTaskButton.addEventListener('click', () => {
+    toggleInput();
+});
 
 const toggleInput = () => {
-    // newTaskInput.style.display === 'inline' ? newTaskInput.style.display = 'none': newTaskInput.style.display = 'inline';
-    if(newTaskInput.style.height === '0px') {
+    if(!inputToggleFlag) {
         newTaskInput.style.height = '1rem';
         newTaskInput.style.visibility = 'visible';
         newTaskInput.style.padding = '1rem';
     }
-        else { 
-            newTaskInput.style.height = '0px';
-            newTaskInput.style.visibility = 'hidden';
-            newTaskInput.style.padding = '0px';
-        }
+    else { 
+        newTaskInput.style.height = '0px';
+        newTaskInput.style.visibility = 'hidden';
+        newTaskInput.style.padding = '0px';
+    }
+    inputToggleFlag = !inputToggleFlag;
 }
 newTaskInput.addEventListener('keydown', () => {inputKeyHandler()});
 
@@ -91,7 +94,7 @@ const editTask = () => {
     editFlag = true;
     newTaskInput.value = event.path[2].innerText;
     taskKey = event.path[2].getAttribute('key');
-    newTaskInput.focus();
+    toggleInput();
     // editFlag = false;
 }
 
