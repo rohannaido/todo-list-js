@@ -74,8 +74,9 @@ const inputKeyHandler = () => {
             newTaskInputDetail.value = "";
         }
         else {
-            editTaskHandler(newTaskInput.value);
+            editTaskHandler(newTaskInput.value, newTaskInputDetail.value);
             newTaskInput.value = "";
+            newTaskInputDetail.value = "";
         }
         toggleInput();
     }
@@ -106,18 +107,18 @@ const deleteTask = () =>{
 
 const editTask = () => {
     editFlag = true;
-    newTaskInput.value = event.path[2].innerText;
+    newTaskInput.value = event.path[2].querySelector("h4").innerText;
+    newTaskInputDetail.value = event.path[2].querySelector("p").innerText;
     taskKey = event.path[2].getAttribute('key');
     toggleInput();
-    // editFlag = false;
 }
 
-const editTaskHandler = (newTask) => {
+const editTaskHandler = (newTask, newTaskDetail) => {
 
     fetch(`http://localhost:3000/allTasks/${taskKey}`, {
     method: "PUT",
     headers: {'Content-Type': 'application/json'}, 
-    body: JSON.stringify({ item: newTask })
+    body: JSON.stringify({ item: newTask, detail: newTaskDetail })
     }).then(res => {
         console.log("Request complete!");
 
