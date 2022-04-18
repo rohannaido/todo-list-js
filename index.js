@@ -48,17 +48,22 @@ const displayTasks = () => {
     
         allTasks.map((task) => {
             const newLi = document.createElement('li');
-            newLi.appendChild(document.createTextNode(task.item));
+            // newLi.appendChild(document.createTextNode(task.item));
             newLi.setAttribute('key',task.id);
+            newLi.setAttribute('onclick', 'editTask()');
             newLi.innerHTML = `
             <div>
                 <h4>${task.item}</h4>
                 <p>${task.detail}</p>
             </div>
+            <div>
+
+            </div>
             <div class="task-buttons">
-                <i key="${task.id}" class="bi bi-pencil-fill delete-task" onclick=editTask()></i>
+                
                 <i key="${task.id}" class="bi bi-trash-fill delete-task" onclick=deleteTask()></i>
             </div>`;
+            // <i key="${task.id}" class="bi bi-pencil-fill delete-task" onclick=editTask()></i>
             taskList.appendChild(newLi);
         })
     });
@@ -106,11 +111,13 @@ const deleteTask = () =>{
 }
 
 const editTask = () => {
+    newTaskInput.value = event.path[0].querySelector("h4").innerText;
+    newTaskInputDetail.value = event.path[0].querySelector("p").innerText;
+    taskKey = event.path[0].getAttribute('key');
+    if (!editFlag){
+        toggleInput();
+    }
     editFlag = true;
-    newTaskInput.value = event.path[2].querySelector("h4").innerText;
-    newTaskInputDetail.value = event.path[2].querySelector("p").innerText;
-    taskKey = event.path[2].getAttribute('key');
-    toggleInput();
 }
 
 const editTaskHandler = (newTask, newTaskDetail) => {
