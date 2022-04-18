@@ -114,7 +114,7 @@ const editTask = () => {
     newTaskInput.value = event.path[0].querySelector("h4").innerText;
     newTaskInputDetail.value = event.path[0].querySelector("p").innerText;
     taskKey = event.path[0].getAttribute('key');
-    if (!editFlag){
+    if (!inputToggleFlag){
         toggleInput();
     }
     editFlag = true;
@@ -128,7 +128,6 @@ const editTaskHandler = (newTask, newTaskDetail) => {
     body: JSON.stringify({ item: newTask, detail: newTaskDetail })
     }).then(res => {
         console.log("Request complete!");
-
         editFlag = false;
         displayTasks();
     });
