@@ -143,7 +143,7 @@ body{
 }
 
 .task-item-div {
-    width: 90%;
+    width: 100%;
 }
 
 .task-item-item {
@@ -176,7 +176,7 @@ body{
     color: var(--black-text);
 }
 
-.task-list li h4 {
+/* .task-list li h4 {
     margin: 0;
     text-align: left;
 }
@@ -185,7 +185,7 @@ body{
     margin: 0;
     font-size: 0.8rem;
     text-align: left;
-}
+} */
 
 .task-buttons {
     display: flex;
@@ -206,12 +206,30 @@ body{
     color: var(--black-text);
 }
 
-.task-buttons i:hover {
-    /* color: white; */
+.delete-task {
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+    font-size: 1rem;
+    cursor: pointer;
+    margin-left: 0;
+    color: grey;
+    padding-top: 0.6rem;
+    
+    position: absolute;
+    left: 67%;
+}
+
+.delete-task:hover {
+    color: black;
 }
 
 @media screen and (max-width: 800px){
     .main{
         width: 70%;
+    }
+
+    .delete-task {
+        left: 80%;
     }
 }

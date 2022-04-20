@@ -53,15 +53,14 @@ const displayTasks = () => {
 
             newLi.innerHTML = `
             <div class="task-item-div">
+                
                 <input class="task-item-item" value="${task.item}">
-                <input class="task-detail-item" value="${task.detail}">
-            </div>
-            <div>
-            
-            </div>
-            <div class="task-buttons">
                 <i key="${task.id}" class="bi bi-trash-fill delete-task" onclick=deleteTask()></i>
+                
+                <input class="task-detail-item" value="${task.detail}">
             </div>`;
+                // <div class="task-buttons">
+                // </div>
                 // <h4>${task.item}</h4>
                 // <p>${task.detail}</p>
                 // <i key="${task.id}" class="bi bi-pencil-fill delete-task" onclick=editTask()></i>
