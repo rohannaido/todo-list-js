@@ -167,25 +167,12 @@ body{
 
 .task-item-item:focus, .task-detail-item:focus {
     outline: none;
-    background-color: #15803d;
-    transition: 0.2s;
-    color: white;
+    background-color: #86efac;
 }
 
 .task-item-item:disabled, .task-detail-item:disabled {
     color: var(--black-text);
 }
-
-/* .task-list li h4 {
-    margin: 0;
-    text-align: left;
-}
-
-.task-list li p {
-    margin: 0;
-    font-size: 0.8rem;
-    text-align: left;
-} */
 
 .task-buttons {
     display: flex;
@@ -215,7 +202,7 @@ body{
     margin-left: 0;
     color: grey;
     padding-top: 0.6rem;
-    
+
     position: absolute;
     left: 67%;
 }
