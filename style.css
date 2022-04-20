@@ -38,13 +38,13 @@ body{
     margin-bottom: 1rem;
     background-color: #dcfce7;
     border-radius: 1rem;
-    padding: 1rem 1rem;
+    padding: 1rem 0rem;
     color: var(--black-text);
 }
 
 .new-task-div {
     text-align: center;
-    padding: 1rem;
+    padding: 0rem;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -73,10 +73,12 @@ body{
     visibility: hidden;
     opacity: 1;
     transition: height 0.2s, opacity 0.3s linear;
+    width: 100%;
+    padding: 0;
 }
 
 .new-task-input {
-    padding: 0.4rem 0.4rem;
+    padding: 0.4rem 1rem;
     border: 1px transparent solid;
     background-color: #22c55e;
     color: white;
@@ -124,6 +126,7 @@ body{
     align-items: center;
     min-width: 15rem;
     width: 100%;
+    padding: 0rem;
     /* max-width: 25rem; */
     /* margin: 0.5rem; */
     /* padding: 0.5rem 0.5rem; */
@@ -149,7 +152,7 @@ body{
     font-size: 1.2rem;
     font-weight: bold;
     width: 100%;
-    padding: 0.4rem 0.4rem;
+    padding: 0.4rem 1rem;
 }
 
 .task-detail-item {
@@ -159,7 +162,7 @@ body{
     font-size: 0.8rem;
     /* font-weight: bold; */
     width: 100%;
-    padding: 0.2rem 0.4rem;
+    padding: 0.2rem 1rem;
 }
 
 .task-item-item:focus, .task-detail-item:focus {
@@ -189,6 +192,7 @@ body{
     flex-direction: row;
     /* width: 10%; */
     align-items: center;
+    padding: 0 1rem;
 }
 
 .task-buttons i {
